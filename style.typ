@@ -1,9 +1,9 @@
 // Main document style function
 #let research-report(
-  title: "Template",
-  author: "Ben",
-  date: datetime,
-  institution: "Institution",
+  title: "",
+  author: "",
+  date: "",
+  institution: "",
   body
 ) = {
   // Page setup
