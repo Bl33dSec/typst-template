@@ -19,13 +19,51 @@
 }
 
 // Code block with syntax highlighting
-#let code-block(code, lang: "python") = {
+#let codeblock(
+  lang: none,
+  title: none,
+  numbered: false,
+  fill: rgb("#f6f8fa"),
+  stroke: rgb("#d0d7de"),
+  radius: 4pt,
+  padding: 10pt,
+  body
+) = {
   block(
-    fill: luma(245),
-    stroke: luma(200) + 1pt,
-    radius: 3pt,
-    inset: 10pt,
     width: 100%,
-    raw(code, lang: lang)
+    fill: fill,
+    stroke: stroke,
+    radius: radius,
+    breakable: true,
+    clip: true,
+    {
+      if title != none {
+        block(
+          width: 100%,
+          fill: rgb("#e5e9ed"),
+          inset: (x: padding, y: 6pt),
+          radius: (top: radius),
+          text(
+            size: 0.9em,
+            weight: "semibold",
+            title
+          )
+        )
+      }
+      
+      block(
+        width: 100%,
+        inset: padding,
+        spacing: 0pt,
+        above: 0pt,
+        below: 0pt,
+        {
+          set par(justify: false)
+          set raw(block: true, lang: lang)
+          body
+        }
+      )
+    }
   )
 }
+
